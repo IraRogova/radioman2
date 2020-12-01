@@ -1,5 +1,12 @@
 package ru.netology.domain;
 
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@NoArgsConstructor
+@Data
 public class Radio {
     private int currentRadioStation;
     private int numberOfRadioStation;
@@ -9,25 +16,36 @@ public class Radio {
     private int minSoundVolume = 0;
     private int maxSoundVolume = 100;
 
-
-    public Radio(int currentRadioStation, int numberOfRadioStation, int firstRadioStation, int lastRadioStation) {
-
+    public Radio(int currentRadioStation,
+                 int firstRadioStation,
+                 int lastRadioStation,
+                 int numberOfRadioStation,
+                 int currentSoundVolume,
+                 int minSoundVolume,
+                 int maxSoundVolume) {
         if (currentRadioStation > lastRadioStation)
             return;
         if (currentRadioStation < firstRadioStation)
             return;
-
         this.currentRadioStation = currentRadioStation;
-        this.numberOfRadioStation = numberOfRadioStation;
         this.firstRadioStation = firstRadioStation;
         this.lastRadioStation = lastRadioStation;
+        this.numberOfRadioStation = numberOfRadioStation;
 
+        if (currentSoundVolume > maxSoundVolume)
+            return;
+        if (currentSoundVolume < minSoundVolume)
+            return;
+        this.currentSoundVolume = currentSoundVolume;
+        this.minSoundVolume = minSoundVolume;
+        this.maxSoundVolume = maxSoundVolume;
     }
 
     public void changeNextRadioStation() {
         if (currentRadioStation == lastRadioStation) {
             this.currentRadioStation = firstRadioStation;
-        } else {
+        }
+        else {
             currentRadioStation++;
         }
     }
@@ -40,35 +58,6 @@ public class Radio {
         }
     }
 
-    public int getCurrentRadioStation() {
-        return currentRadioStation;
-    }
-
-    public int getFirstRadioStation() {
-        return firstRadioStation;
-    }
-
-    public int getLastRadioStation() {
-        return lastRadioStation;
-    }
-
-    public int getAmountRadioStation() {
-        return numberOfRadioStation;
-    }
-
-
-    public Radio(int currentSoundVolume, int minSoundVolume, int maxSoundVolume) {
-
-        if (currentSoundVolume > maxSoundVolume)
-            return;
-        if (currentSoundVolume < minSoundVolume)
-            return;
-
-        this.currentSoundVolume = currentSoundVolume;
-        this.minSoundVolume = minSoundVolume;
-        this.maxSoundVolume = maxSoundVolume;
-    }
-
     public void increaseCurrentSoundVolume() {
         if (currentSoundVolume < maxSoundVolume)
             currentSoundVolume++;
@@ -78,18 +67,5 @@ public class Radio {
         if (currentSoundVolume > minSoundVolume)
             currentSoundVolume--;
     }
-
-    public int getCurrentSoundVolume() {
-        return currentSoundVolume;
-    }
-
-    public int getMinSoundVolume() {
-        return minSoundVolume;
-    }
-
-    public int getMaxSoundVolume() {
-        return maxSoundVolume;
-    }
-
 
 }
