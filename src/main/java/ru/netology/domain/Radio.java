@@ -17,9 +17,9 @@ public class Radio {
     private int maxSoundVolume = 100;
 
     public Radio(int currentRadioStation,
+                 int numberOfRadioStation,
                  int firstRadioStation,
                  int lastRadioStation,
-                 int numberOfRadioStation,
                  int currentSoundVolume,
                  int minSoundVolume,
                  int maxSoundVolume) {
